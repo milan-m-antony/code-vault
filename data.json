@@ -47,4 +47,41 @@
         "tags": ["sorting", "algorithm", "array"],
         "rawPath": "/raw/c/quick_sort.c"
     }
+    ,
+    {
+        "title": "Calculator App - All",
+        "language": "web",
+        "tags": ["web", "html", "css", "js", "php"],
+        "rawPath": "/raw/web/1/all.txt"
+    },
+    {
+        "title": "Calculator App - HTML",
+        "language": "web",
+        "tags": ["web", "html"],
+        "rawPath": "/raw/web/1/index.html"
+    },
+    {
+        "title": "Calculator App - CSS",
+        "language": "web",
+        "tags": ["web", "css"],
+        "rawPath": "/raw/web/1/style.css"
+    },
+    {
+        "title": "Calculator App - JS",
+        "language": "web",
+        "tags": ["web", "js"],
+        "rawPath": "/raw/web/1/script.js"
+    },
+    {
+        "title": "Calculator App - PHP Connection",
+        "language": "php",
+        "tags": ["php", "backend", "pdo"],
+        "rawPath": "/raw/web/1/connection.php"
+    },
+    {
+        "title": "Calculator App - PHP Add",
+        "language": "php",
+        "tags": ["php", "backend", "insert"],
+        "rawPath": "/raw/web/1/add.php"
+    }
 ]
