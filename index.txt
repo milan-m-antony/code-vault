@@ -15,6 +15,7 @@ CODE VAULT - INDEX
 ## 3. Linked List Implementation | /raw/c/linked_list.c
 ## 4. Quick Sort                 | /raw/c/quick_sort.c
 ##
+
 WEB PROGRAMS
 ------------
 1. Calculator App (with PHP backend sample)
