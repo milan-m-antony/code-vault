@@ -1,30 +1,44 @@
-WEB PROGRAMS INDEX
-=================
+==================================================
+				CODE VAULT
+			WEB PROGRAM LIST
+==================================================
 
-1. CV Website
-	HTML → /web/1html
+NOTE:
+-----
+• This is a plain-text index.
+• All links show FULL source code.
+• Use `| more` only if output is long (optional).
 
-2. Calculator
+--------------------------------------------------
+ WEB PROJECTS
+--------------------------------------------------
+
+[1] CV Website
+	URL → /web/1html
+
+[2] Calculator
 	HTML → /web/2html
-	CSS  → /web/2css
-	JS   → /web/2js
 
-3. Online Exam UI
-	HTML → /web/3html
+[3] Online Exam UI
+	URL → /web/3html
 
-4. Job Application Form
-	HTML → /web/4html
+[4] Job Application Form
+	URL → /web/4html
 
-5. Students Feedback System
-	HTML → /web/5html
+[5] Students Feedback System
+	URL → /web/5html
 
-6. Cricket Players Website
-	HTML → /web/6html
+[6] Cricket Players Website
+	URL → /web/6html
 
-9. Web Practice Demos
-	HTML → /web/9html
+[9] Web Practice Demos
+	URL → /web/9html
 
-10. Advanced Job Application
-	 HTML → /web/10html
+[10] Advanced Job Application
+	 URL → /web/10html
+
+--------------------------------------------------
+ END OF LIST
+--------------------------------------------------
 
 
