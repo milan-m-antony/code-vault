@@ -1,0 +1,50 @@
+[
+    {
+        "title": "Fibonacci Sequence",
+        "language": "python",
+        "tags": ["recursion", "mathematics", "sequence"],
+        "rawPath": "/raw/python/fibonacci.py"
+    },
+    {
+        "title": "Palindrome Checker",
+        "language": "python",
+        "tags": ["string", "validation", "algorithm"],
+        "rawPath": "/raw/python/palindrome.py"
+    },
+    {
+        "title": "Bubble Sort",
+        "language": "python",
+        "tags": ["sorting", "algorithm", "array"],
+        "rawPath": "/raw/python/bubble_sort.py"
+    },
+    {
+        "title": "Binary Search",
+        "language": "python",
+        "tags": ["search", "algorithm", "array"],
+        "rawPath": "/raw/python/binary_search.py"
+    },
+    {
+        "title": "FIFO Queue",
+        "language": "c",
+        "tags": ["data-structure", "queue", "algorithm"],
+        "rawPath": "/raw/c/fifo.c"
+    },
+    {
+        "title": "Prime Number Checker",
+        "language": "c",
+        "tags": ["mathematics", "number-theory", "validation"],
+        "rawPath": "/raw/c/prime.c"
+    },
+    {
+        "title": "Linked List Implementation",
+        "language": "c",
+        "tags": ["data-structure", "linked-list", "memory"],
+        "rawPath": "/raw/c/linked_list.c"
+    },
+    {
+        "title": "Quick Sort",
+        "language": "c",
+        "tags": ["sorting", "algorithm", "array"],
+        "rawPath": "/raw/c/quick_sort.c"
+    }
+]

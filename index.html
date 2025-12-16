@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Archive - Browser & CLI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Code Archive</h1>
+            <p>Browse and search code examples. Works in browser and CLI.</p>
+        </header>
+
+        <div class="search-section">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Search code (Press / to focus, Esc to clear)..."
+                autocomplete="off"
+            >
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="python">Python</button>
+                <button class="filter-btn" data-filter="c">C</button>
+            </div>
+        </div>
+
+        <div class="keyboard-hints">
+            <span>⌨️ <kbd>/</kbd> to search</span>
+            <span><kbd>↵</kbd> to open first</span>
+            <span><kbd>Esc</kbd> to clear</span>
+        </div>
+
+        <div class="results-section">
+            <div id="resultsCount" class="results-count"></div>
+            <div id="resultsList" class="results-list"></div>
+        </div>
+
+        <footer>
+            <p>CLI Users: See <a href="help.txt">/help.txt</a> or run:</p>
+            <code>curl https://yoursite.com/index.txt</code>
+        </footer>
+    </div>
+
+    <!-- Modal for code viewer -->
+    <div id="codeModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <button id="closeModal" class="close-btn">×</button>
+            </div>
+            <div class="modal-controls">
+                <button id="copyBtn" class="copy-btn">📋 Copy Code</button>
+                <a id="rawLink" href="#" class="raw-link">View Raw</a>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeContent"></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

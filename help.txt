@@ -1,0 +1,113 @@
+CODE ARCHIVE - CLI USAGE GUIDE
+=====================================
+
+This is a fully static code archive accessible from both browsers and CLI.
+
+QUICK START
+-----------
+View all available code:
+  curl https://yoursite.com/index.txt
+
+View Python code:
+  curl https://yoursite.com/python/index.txt
+
+View C code:
+  curl https://yoursite.com/c/index.txt
+
+View specific code file:
+  curl https://yoursite.com/raw/python/fibonacci.py
+  curl https://yoursite.com/raw/c/fifo.c
+
+
+BROWSER USAGE
+-------------
+1. Open https://yoursite.com in your browser
+2. Use the search bar to find code by title, language, or tags
+3. Press "/" to focus the search input from anywhere
+4. Press "Enter" to open the first result
+5. Press "Esc" to clear the search
+6. Click any result to view the full code
+7. Use the "Copy Code" button to copy code to clipboard
+8. Click "View Raw" to see the raw file
+
+
+AVAILABLE LANGUAGES
+-------------------
+- Python (.py)
+- C (.c)
+
+
+FILE STRUCTURE
+--------------
+/index.txt              - Root index (all code)
+/python/index.txt       - Python code index
+/c/index.txt            - C code index
+/raw/python/*.py        - Raw Python source files
+/raw/c/*.c              - Raw C source files
+/data.json              - Searchable metadata
+/downloads/python.zip   - Python code archive
+/downloads/c.zip        - C code archive
+
+
+INDEX FILE FORMAT
+-----------------
+Each index file lists code in this format:
+  Title | /raw/path/to/file
+
+Example:
+  Fibonacci Sequence | /raw/python/fibonacci.py
+  FIFO Queue | /raw/c/fifo.c
+
+
+EXAMPLE CURL COMMANDS
+---------------------
+
+PowerShell:
+  # Get all code titles
+  (curl https://yoursite.com/index.txt).Content
+
+  # Get Python code and save to file
+  Invoke-WebRequest -Uri https://yoursite.com/raw/python/fibonacci.py -OutFile fibonacci.py
+
+  # View code directly in terminal
+  curl https://yoursite.com/raw/python/palindrome.py | cat
+
+Bash/Linux/Mac:
+  # Get all code titles
+  curl https://yoursite.com/index.txt
+
+  # Download raw file
+  curl -o fibonacci.py https://yoursite.com/raw/python/fibonacci.py
+
+  # View code in terminal
+  curl https://yoursite.com/raw/python/palindrome.py
+
+  # Download entire language pack
+  curl -o python.zip https://yoursite.com/downloads/python.zip
+
+
+TAGGING SYSTEM
+--------------
+Code can be searched by tags such as:
+- algorithm, recursion, mathematics
+- data-structure, sorting, search
+- string, validation, array, memory
+- and more
+
+Search for tags in the browser or check data.json for complete list.
+
+
+OFFLINE USAGE
+-------------
+Download language-specific ZIP files:
+  /downloads/python.zip - All Python code
+  /downloads/c.zip      - All C code
+
+Then extract and use locally.
+
+
+CONTACT & INFO
+--------------
+This is a fully static website with no backend or authentication.
+All files are public and directly accessible.
+Built with vanilla HTML, CSS, JavaScript, and static data.
