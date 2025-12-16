@@ -1,1 +1,0 @@
-document.getElementById('fb').addEventListener('submit',function(e){e.preventDefault();const d=Object.fromEntries(new FormData(e.target).entries());document.getElementById('show').textContent=JSON.stringify(d,null,2)});
