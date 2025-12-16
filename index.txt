@@ -1,10 +1,6 @@
 CODE VAULT - INDEX
 ===================
 
-## ALL NON-WEB CONTENT (commented out)
-## ---------------------------------
-## The repository now focuses on web projects only.
-## Python, C, Downloads, Help, and other non-web entries are intentionally commented out.
 
 WEB PROGRAMS
 ------------
