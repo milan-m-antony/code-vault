@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    { "source": "/c", "destination": "/c/index.txt", "permanent": false },
+    { "source": "/c/1", "destination": "/raw/c/fifo.c", "permanent": false },
+    { "source": "/c/2", "destination": "/raw/c/prime.c", "permanent": false },
+    { "source": "/c/3", "destination": "/raw/c/linked_list.c", "permanent": false },
+    { "source": "/c/4", "destination": "/raw/c/quick_sort.c", "permanent": false },
+
+    { "source": "/python", "destination": "/python/index.txt", "permanent": false },
+    { "source": "/python/1", "destination": "/raw/python/fibonacci.py", "permanent": false },
+    { "source": "/python/2", "destination": "/raw/python/palindrome.py", "permanent": false },
+    { "source": "/python/3", "destination": "/raw/python/bubble_sort.py", "permanent": false },
+    { "source": "/python/4", "destination": "/raw/python/binary_search.py", "permanent": false }
+  ]
+}

@@ -1,4 +1,6 @@
-Fibonacci Sequence | /raw/python/fibonacci.py
-Palindrome Checker | /raw/python/palindrome.py
-Bubble Sort | /raw/python/bubble_sort.py
-Binary Search | /raw/python/binary_search.py
+PYTHON PROGRAMS INDEX
+
+1. Fibonacci Sequence          | /raw/python/fibonacci.py
+2. Palindrome Checker          | /raw/python/palindrome.py
+3. Bubble Sort                 | /raw/python/bubble_sort.py
+4. Binary Search               | /raw/python/binary_search.py
