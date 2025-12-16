@@ -1,8 +1,41 @@
-Fibonacci Sequence | /raw/python/fibonacci.py
-Palindrome Checker | /raw/python/palindrome.py
-Bubble Sort | /raw/python/bubble_sort.py
-Binary Search | /raw/python/binary_search.py
-FIFO Queue | /raw/c/fifo.c
-Prime Number Checker | /raw/c/prime.c
-Linked List Implementation | /raw/c/linked_list.c
-Quick Sort | /raw/c/quick_sort.c
+CODE VAULT - INDEX
+===================
+
+PYTHON PROGRAMS
+----------------
+1. Fibonacci Sequence         | /raw/python/fibonacci.py
+2. Palindrome Checker         | /raw/python/palindrome.py
+3. Bubble Sort                | /raw/python/bubble_sort.py
+4. Binary Search              | /raw/python/binary_search.py
+
+
+C PROGRAMS
+----------
+1. FIFO Queue                 | /raw/c/fifo.c
+2. Prime Number Checker       | /raw/c/prime.c
+3. Linked List Implementation | /raw/c/linked_list.c
+4. Quick Sort                 | /raw/c/quick_sort.c
+
+
+WEB PROGRAMS
+------------
+1. Calculator App (with PHP backend sample)
+
+	ALL        | /web/1
+	HTML       | /web/1html
+	CSS        | /web/1css
+	JS         | /web/1js
+	PHP Conn   | /web/1php
+	PHP Add    | /web/1php-add
+
+
+DOWNLOADS
+---------
+- Python archive : /downloads/python.zip
+- C archive      : /downloads/c.zip
+
+
+HELP
+----
+See /help.txt for CLI usage examples and tips.
+
