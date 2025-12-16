@@ -1,0 +1,5 @@
+body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#000;margin:24px}
+.container{max-width:640px;margin:0 auto}
+form label{display:block;margin:8px 0}
+input{padding:8px;border:1px solid #000;width:100%;box-sizing:border-box}
+button{padding:8px 12px;border:1px solid #000;background:#fff}

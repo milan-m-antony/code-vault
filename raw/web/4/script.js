@@ -1,0 +1,1 @@
+document.getElementById('jobForm').addEventListener('submit',function(e){e.preventDefault();const fd=new FormData(e.target);document.getElementById('out').textContent=JSON.stringify(Object.fromEntries(fd.entries()),null,2)});
