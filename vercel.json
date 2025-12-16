@@ -11,5 +11,13 @@
     { "source": "/python/2", "destination": "/raw/python/palindrome.py", "permanent": false },
     { "source": "/python/3", "destination": "/raw/python/bubble_sort.py", "permanent": false },
     { "source": "/python/4", "destination": "/raw/python/binary_search.py", "permanent": false }
+    ,
+    { "source": "/web", "destination": "/web/index.txt", "permanent": false },
+    { "source": "/web/1", "destination": "/raw/web/1/all.txt", "permanent": false },
+    { "source": "/web/1html", "destination": "/raw/web/1/index.html", "permanent": false },
+    { "source": "/web/1css", "destination": "/raw/web/1/style.css", "permanent": false },
+    { "source": "/web/1js", "destination": "/raw/web/1/script.js", "permanent": false },
+    { "source": "/web/1php", "destination": "/raw/web/1/connection.php", "permanent": false },
+    { "source": "/web/1php-add", "destination": "/raw/web/1/add.php", "permanent": false }
   ]
 }
