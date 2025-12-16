@@ -9,7 +9,12 @@
 --------------------------------------------------
 
 [1] CV Website
-	URL → /web/1html
+		URL → /web/1html  (plain-text source available)
+
+Notes:
+- To view the full source in the terminal, run:
+	curl https://<your-host>/web/1html
+	(the site serves `web/1html` which mirrors `raw/web/1/all.txt`)
 
 
 
