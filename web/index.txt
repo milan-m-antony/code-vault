@@ -1,10 +1,28 @@
 WEB PROGRAMS INDEX
+=================
 
-1. Calculator App (with PHP backend sample)
+1. CV Website
+   HTML → /web/1html
 
-   ALL        | /web/1
-   HTML       | /web/1html
-   CSS        | /web/1css
-   JS         | /web/1js
-   PHP Conn   | /web/1php
-   PHP Add    | /web/1php-add
+2. Calculator
+   HTML → /web/2html
+   CSS  → /web/2css
+   JS   → /web/2js
+
+3. Online Exam UI
+   HTML → /web/3html
+
+4. Job Application Form
+   HTML → /web/4html
+
+5. Students Feedback System
+   HTML → /web/5html
+
+6. Cricket Players Website
+   HTML → /web/6html
+
+9. Web Practice Demos
+   HTML → /web/9html
+
+10. Advanced Job Application
+    HTML → /web/10html
