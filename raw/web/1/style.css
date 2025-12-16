@@ -1,8 +1,0 @@
-/* Minimal styles for the demo Calculator App (static) */
-body { font-family: system-ui, Arial, sans-serif; background: #f7f8fb; color: #111; padding: 24px; }
-.calculator { max-width: 520px; margin: 0 auto; background: #fff; padding: 18px; border-radius: 8px; box-shadow: 0 6px 24px rgba(16,24,40,0.08); }
-.calculator h1 { color: #0b5cff; font-size: 1.1rem; margin-bottom: 12px; }
-form { display:flex; gap:8px; margin-bottom:12px; }
-input { padding:8px 10px; border:1px solid #e6e9ef; border-radius:6px; flex:1 }
-button { padding:8px 12px; background:#0b5cff; color:white; border:0; border-radius:6px; cursor:pointer }
-pre { background:#f3f4f6; padding:10px; border-radius:6px; font-family:monospace }
