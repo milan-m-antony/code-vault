@@ -1,0 +1,27 @@
+=== Project: Practice Demos (raw/web/9) ===
+
+-- index.html --
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Web Practice Demos</title>
+  <link rel="stylesheet" href="/raw/web/9/style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Practice Demos</h1>
+    <ul>
+      <li><a href="/raw/web/2/index.html">Calculator demo</a></li>
+      <li><a href="/raw/web/3/index.html">Exam UI demo</a></li>
+      <li><a href="/raw/web/4/index.html">Job form demo</a></li>
+    </ul>
+  </main>
+</body>
+</html>
+
+-- style.css --
+body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#000;margin:24px}
+.container{max-width:640px;margin:0 auto}
+a{color:#000}

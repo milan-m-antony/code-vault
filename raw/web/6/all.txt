@@ -1,0 +1,28 @@
+=== Project: Cricket Players (raw/web/6) ===
+
+-- index.html --
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cricket Players</title>
+  <link rel="stylesheet" href="/raw/web/6/style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Cricket Players</h1>
+    <ul id="players">
+      <li>Player A — Batsman</li>
+      <li>Player B — Bowler</li>
+      <li>Player C — Allrounder</li>
+    </ul>
+  </main>
+</body>
+</html>
+
+-- style.css --
+body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#000;margin:24px}
+.container{max-width:640px;margin:0 auto}
+ul#players{list-style:none;padding:0}
+ul#players li{padding:8px;border-bottom:1px solid #eee}
