@@ -28,11 +28,15 @@ WEB PROGRAMS
 	PHP Conn   | /web/1php
 	PHP Add    | /web/1php-add
 
+	Standalone HTML | /raw/web/1/calculator.html
+	Standalone CSS  | /raw/web/1/calculator.css
+
 
 DOWNLOADS
 ---------
 - Python archive : /downloads/python.zip
 - C archive      : /downloads/c.zip
+- Web archive    : /downloads/web.zip
 
 
 HELP
