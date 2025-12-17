@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Curriculum Vitae</title>
+<link rel="stylesheet" href="cv.css">
+</head>
+
+<body>
+
+<div class="cv">
+
+<!-- Navigation Menu -->
+<ul class="menu">
+    <li><a href="#objective">Objective</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#declaration">Declaration</a></li>
+</ul>
+
+<h1>Milan M Antony</h1>
+
+<p class="contact">
+Email: milanmelemuri2002@gmail.com<br>
+Phone: 9746372046<br>
+Address: Melemuriyil (H), Thulappally PO, Ranni, Pathanamthitta, Kerala
+</p>
+
+<hr>
+
+<h2 id="objective">Career Objective</h2>
+<p>
+To learn and apply my technical knowledge in a practical environment
+while developing professional skills.
+</p>
+
+<hr>
+
+<h2 id="education">Educational Qualification</h2>
+<ul>
+<li>MCA – Amal Jyothi College of Engineering</li>
+<li>BCA – Mahatma Gandhi University</li>
+</ul>
+
+<hr>
+
+<h2 id="skills">Skills</h2>
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>PHP</li>
+<li>MySQL</li>
+<li>Basic JavaScript</li>
+</ul>
+
+<hr>
+
+<h2 id="declaration">Declaration</h2>
+<p>
+I hereby declare that the above information is true to the best of my knowledge.
+</p>
+
+<p class="signature">
+Place: Ranni<br>
+Date:<br><br>
+Signature: Milan M Antony
+</p>
+
+</div>
+
+</body>
+</html>
