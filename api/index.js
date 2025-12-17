@@ -18,7 +18,7 @@ module.exports = (req, res) => {
   const host = req.headers.host || 'code-vault-sable.vercel.app';
 
   // friendly names for projects (folder -> display name)
-  const names = { '1': 'Calculator', '2': 'Exam question' };
+  const names = { '1': 'Calculator', '2': 'Exam question', '3': 'PHP CRUD (student)' };
 
   let out = 'CODE VAULT - WEB PROJECTS\n\n';
   if (projects.length === 0) {
