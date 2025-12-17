@@ -20,11 +20,11 @@ module.exports = (req, res) => {
     out += 'No web projects found.\n';
   } else {
     projects.forEach(p => {
-      out += `${p}\n  curl -L https://${host}/web/${p}/index.html\n  curl -L https://${host}/web/${p}/style.css\n`;
+      out += `${p}\n  curl -L https://${host}/web/${p}/index.txt\n  curl -L https://${host}/web/${p}/style.txt\n`;
     });
   }
 
-  out += '\nNotes:\n- Use `-L` with curl to follow redirects (Vercel).\n- To view a file in the terminal, run the curl command above.\n';
+  out += '\nNotes:\n- Use `-L` with curl to follow redirects (Vercel).\n- If the site cannot serve static files, the API will fallback to the GitHub raw file URLs so the code still displays.\n';
   res.statusCode = 200;
   res.end(out);
 };

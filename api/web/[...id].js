@@ -29,28 +29,60 @@ module.exports = (req, res) => {
   const base = path.join(process.cwd(), 'web');
   let full = path.join(base, rel);
 
-  // If path is a directory, try index.html
+  // If path is a directory, try index.txt first then index.html
   try {
     const stat = fs.existsSync(full) ? fs.statSync(full) : null;
     if (stat && stat.isDirectory()) {
-      full = path.join(full, 'index.html');
+      // prefer index.txt (plain-text source), then index.html
+      const txt = path.join(full, 'index.txt');
+      const html = path.join(full, 'index.html');
+      if (fs.existsSync(txt)) full = txt;
+      else full = html;
     }
-    if (!fs.existsSync(full)) {
-      res.statusCode = 404;
-      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-      res.end('NOT_FOUND');
+
+    if (fs.existsSync(full)) {
+      const ext = path.extname(full).toLowerCase();
+      res.statusCode = 200;
+      res.setHeader('Content-Type', contentTypeFor(ext));
+      const stream = fs.createReadStream(full);
+      stream.pipe(res);
+      stream.on('error', () => {
+        res.statusCode = 500;
+        res.end('Server error');
+      });
       return;
     }
 
-    const ext = path.extname(full).toLowerCase();
-    res.statusCode = 200;
-    res.setHeader('Content-Type', contentTypeFor(ext));
-    const stream = fs.createReadStream(full);
-    stream.pipe(res);
-    stream.on('error', () => {
-      res.statusCode = 500;
-      res.end('Server error');
+    // Fallback: fetch from GitHub raw URL (owner/repo/branch)
+    const owner = 'milan-m-antony';
+    const repo = 'code-vault';
+    const branch = 'main';
+    const https = require('https');
+    const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/web/${rel}`;
+
+    https.get(rawUrl, (ghRes) => {
+      if (ghRes.statusCode >= 200 && ghRes.statusCode < 300) {
+        // set content-type from response or infer from ext
+        const ext = path.extname(rel).toLowerCase();
+        const ctype = ghRes.headers['content-type'] || contentTypeFor(ext);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', ctype);
+        ghRes.pipe(res);
+      } else if (ghRes.statusCode === 404) {
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+        res.end('NOT_FOUND');
+      } else {
+        res.statusCode = 502;
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+        res.end('Upstream error');
+      }
+    }).on('error', () => {
+      res.statusCode = 502;
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.end('Upstream error');
     });
+
   } catch (e) {
     res.statusCode = 500;
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
