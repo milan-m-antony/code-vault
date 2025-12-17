@@ -26,17 +26,26 @@ module.exports = (req, res) => {
   } else {
     projects.forEach((p, idx) => {
       const display = names[p] || `project-${p}`;
-      out += `${idx + 1}) ${display}\n  Path: web/${p}/\n`;
-      // list available .txt files for this project
+      const projectDir = path.join(webDir, p);
+      
+      // list all .txt files in this project
+      let txtFiles = [];
       try {
-        const files = fs.readdirSync(path.join(webDir, p));
-        files.filter(f => f.endsWith('.txt')).forEach(f => {
+        const files = fs.readdirSync(projectDir);
+        txtFiles = files.filter(f => f.endsWith('.txt')).sort();
+      } catch (e) {
+        // error reading project dir
+      }
+
+      out += `${idx + 1}) ${display}\n  Path: web/${p}/\n`;
+      if (txtFiles.length === 0) {
+        out += '  (no source files)\n';
+      } else {
+        txtFiles.forEach(f => {
           out += `  curl -L https://${host}/web/${p}/${f}\n`;
         });
-      } catch (e) {
-        // ignore
       }
-      out += `\n`;
+      out += '\n';
     });
   }
 
