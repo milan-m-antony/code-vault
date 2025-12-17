@@ -26,7 +26,17 @@ module.exports = (req, res) => {
   } else {
     projects.forEach((p, idx) => {
       const display = names[p] || `project-${p}`;
-      out += `${idx + 1}) ${display}\n  Path: web/${p}/\n  curl -L https://${host}/web/${p}/index.txt\n  curl -L https://${host}/web/${p}/style.txt\n\n`;
+      out += `${idx + 1}) ${display}\n  Path: web/${p}/\n`;
+      // list available .txt files for this project
+      try {
+        const files = fs.readdirSync(path.join(webDir, p));
+        files.filter(f => f.endsWith('.txt')).forEach(f => {
+          out += `  curl -L https://${host}/web/${p}/${f}\n`;
+        });
+      } catch (e) {
+        // ignore
+      }
+      out += `\n`;
     });
   }
 
