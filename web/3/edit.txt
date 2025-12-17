@@ -1,0 +1,56 @@
+<?php
+$con = mysqli_connect("localhost", "root", "", "studentdb");
+if (!$con) {
+    die("Database not connected: " . mysqli_connect_error());
+}
+
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $rollno = $_POST['rollno'];
+        $fullname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+
+        $sql = "UPDATE student SET rollno='$rollno', fullname='$fullname', email='$email', phone='$phone' WHERE id=$id";
+        if (mysqli_query($con, $sql)) {
+            echo "<p style='color:green; text-align:center;'>Record updated successfully!</p>";
+            echo "<p style='text-align:center;'><a href='view.php'>Back to Student List</a></p>";
+            exit();
+        } else {
+            echo "Error updating record: " . mysqli_error($con);
+        }
+    }
+
+    $sql = "SELECT * FROM student WHERE id=$id";
+    $res = mysqli_query($con, $sql);
+    $row = mysqli_fetch_assoc($res);
+
+    if ($row) {
+        ?>
+        <h2 style="text-align:center;">Edit Student</h2>
+        <form method="post" action="" style="text-align:center;">
+            <label>Roll No</label><br>
+            <input type="text" name="rollno" value="<?php echo $row['rollno']; ?>" required><br><br>
+
+            <label>Full Name</label><br>
+            <input type="text" name="fullname" value="<?php echo $row['fullname']; ?>" required><br><br>
+
+            <label>Email</label><br>
+            <input type="email" name="email" value="<?php echo $row['email']; ?>" required><br><br>
+
+            <label>Phone</label><br>
+            <input type="text" name="phone" value="<?php echo $row['phone']; ?>" required><br><br>
+
+            <button type="submit">Update</button>
+            <a href="view.php"><button type="button">Cancel</button></a>
+        </form>
+        <?php
+    } else {
+        echo "<p style='text-align:center;'>Student not found.</p>";
+    }
+} else {
+    echo "<p style='text-align:center;'>No ID provided.</p>";
+}
+?>

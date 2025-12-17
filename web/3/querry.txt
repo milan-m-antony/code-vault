@@ -1,0 +1,19 @@
+-- Create Database
+CREATE DATABASE IF NOT EXISTS studentdb
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_general_ci;
+
+-- Select Database
+USE studentdb;
+
+-- Drop table if exists to ensure schema update
+DROP TABLE IF EXISTS student;
+
+-- Create Student Table
+CREATE TABLE student (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    rollno VARCHAR(50) NOT NULL,
+    fullname VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL
+);

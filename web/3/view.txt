@@ -1,0 +1,37 @@
+<?php
+$con = mysqli_connect("localhost", "root", "", "studentdb");
+if (!$con) {
+    die("Database not connected: " . mysqli_connect_error());
+}
+
+$sql = "SELECT * FROM student";
+$res = mysqli_query($con, $sql);
+
+echo "<h3 align='center'>Student Details</h3>";
+
+if (mysqli_num_rows($res) > 0) {
+    echo "<table border='1' align='center'>";
+    echo "<tr><th>ID</th><th>Roll No</th><th>Full Name</th><th>Email</th><th>Phone</th><th>Actions</th></tr>";
+
+    while ($row = mysqli_fetch_assoc($res)) {
+        echo "<tr>";
+        echo "<td>" . $row['id'] . "</td>";
+        echo "<td>" . $row['rollno'] . "</td>";
+        echo "<td>" . $row['fullname'] . "</td>";
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['phone'] . "</td>";
+        echo "<td>
+                <a href='edit.php?id=" . $row['id'] . "'>Edit</a> | 
+                <a href='delete.php?id=" . $row['id'] . "'>Delete</a>
+              </td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
+} else {
+    echo "<p align='center'>No records found</p>";
+}
+echo "<p align='center'>
+        <button onclick=\"location.href='student.php'\">Go Back to Insert</button>
+      </p>";
+?>

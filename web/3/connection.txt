@@ -1,0 +1,23 @@
+<?php
+$con = mysqli_connect("localhost", "root", "", "studentdb");
+if (!$con) {
+        die("Database not connected: " . mysqli_connect_error());
+}
+
+if (isset($_POST['submit'])) {
+        $fullname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $number = $_POST['number'];
+        $rollno = $_POST['rollno'];
+
+        $sql = "INSERT INTO student (fullname, email, phone, rollno) 
+            VALUES ('$fullname', '$email', '$number', '$rollno')";
+
+        if (mysqli_query($con, $sql)) {
+                echo "<script>alert('Student Registered Successfully');</script>";
+                echo "<script>window.location.href = 'view.php';</script>";
+        } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($con);
+        }
+}
+?>
