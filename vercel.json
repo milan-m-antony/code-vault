@@ -4,7 +4,13 @@
     { "src": "api/**/*.js", "use": "@vercel/node" }
   ],
   "rewrites": [
-    { "source": "/", "destination": "/api" },
-    { "source": "/web/:id*", "destination": "/api/web/:id*" }
+    { "source": "/", "destination": "/api" }
+  ],
+  "redirects": [
+    {
+      "source": "/web/:path*",
+      "destination": "https://raw.githubusercontent.com/milan-m-antony/code-vault/main/web/:path*",
+      "permanent": false
+    }
   ]
 }
