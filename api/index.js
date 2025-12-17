@@ -14,17 +14,23 @@ module.exports = (req, res) => {
   }
 
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-  let host = req.headers.host || 'code-vault-sable.vercel.app';
+  res.setHeader('Cache-Control', 'no-cache');
+  const host = req.headers.host || 'code-vault-sable.vercel.app';
+
+  // friendly names for projects (folder -> display name)
+  const names = { '1': 'Calculator', '2': 'Exam question' };
+
   let out = 'CODE VAULT - WEB PROJECTS\n\n';
   if (projects.length === 0) {
     out += 'No web projects found.\n';
   } else {
-    projects.forEach(p => {
-      out += `${p}\n  curl -L https://${host}/web/${p}/index.txt\n  curl -L https://${host}/web/${p}/style.txt\n`;
+    projects.forEach((p, idx) => {
+      const display = names[p] || `project-${p}`;
+      out += `${idx + 1}) ${display}\n  Path: web/${p}/\n  curl -L https://${host}/web/${p}/index.txt\n  curl -L https://${host}/web/${p}/style.txt\n\n`;
     });
   }
 
-  out += '\nNotes:\n- Use `-L` with curl to follow redirects (Vercel).\n- If the site cannot serve static files, the API will fallback to the GitHub raw file URLs so the code still displays.\n';
+  out += '\nNotes:\n- Use -L with curl to follow redirects (Vercel).\n- If the site cannot serve static files, the API will fallback to the GitHub raw file URLs so the code still displays.\n';
   res.statusCode = 200;
   res.end(out);
 };
