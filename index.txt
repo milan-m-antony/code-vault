@@ -8,13 +8,11 @@
  WEB PROJECTS
 --------------------------------------------------
 
-[1] CV Website
-		URL → /web/1html  (plain-text source available)
+[1]calculator
+		curl url/web/ 
 
-Notes:
-- To view the full source in the terminal, run:
-	curl https://<your-host>/web/1html
-	(the site serves `web/1html` which mirrors `raw/web/1/all.txt`)
+[2] HTML page to show online exams using Javascript.
+		curl url/web/  
 
 
 

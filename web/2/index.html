@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Online Examination</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 40px;
+}
+
+.exam-box {
+    max-width: 600px;
+    background: #ffffff;
+    padding: 20px;
+    margin: auto;
+    border: 2px solid #000;
+}
+
+h1 {
+    text-align: center;
+}
+
+.question {
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="exam-box">
+    <h1>Online Exam</h1>
+
+    <form id="examForm">
+
+        <div class="question">
+            <p>1. What does HTML stand for?</p>
+            <input type="radio" name="q1" value="a"> Hyper Text Markup Language<br>
+            <input type="radio" name="q1" value="b"> High Text Machine Language<br>
+            <input type="radio" name="q1" value="c"> Hyperlinks and Text Markup Language
+        </div>
+
+        <div class="question">
+            <p>2. Which language is used for web styling?</p>
+            <input type="radio" name="q2" value="a"> HTML<br>
+            <input type="radio" name="q2" value="b"> CSS<br>
+            <input type="radio" name="q2" value="c"> Java
+        </div>
+
+        <div class="question">
+            <p>3. JavaScript is used for?</p>
+            <input type="radio" name="q3" value="a"> Structure<br>
+            <input type="radio" name="q3" value="b"> Styling<br>
+            <input type="radio" name="q3" value="c"> Interactivity
+        </div>
+
+        <button type="button" onclick="submitExam()">Submit Exam</button>
+    </form>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function submitExam() {
+    let score = 0;
+
+    let q1 = document.querySelector('input[name="q1"]:checked');
+    let q2 = document.querySelector('input[name="q2"]:checked');
+    let q3 = document.querySelector('input[name="q3"]:checked');
+
+    if (q1 && q1.value === "a") score++;
+    if (q2 && q2.value === "b") score++;
+    if (q3 && q3.value === "c") score++;
+
+    document.getElementById("result").innerHTML =
+        "Your Score: " + score + " / 3";
+}
+</script>
+
+</body>
+</html>
