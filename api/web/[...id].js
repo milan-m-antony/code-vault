@@ -16,9 +16,22 @@ function contentTypeFor(ext) {
 }
 
 module.exports = (req, res) => {
-  const id = req.query.id || [];
-  const parts = Array.isArray(id) ? id : [id];
-  const rel = parts.join('/');
+  // Vercel may pass params as req.query.id (array) or the path
+  // could be available in req.url when rewrites are used. Build a
+  // robust `rel` from either source.
+  let rel = '';
+  if (req.query && req.query.id) {
+    const id = req.query.id || [];
+    const parts = Array.isArray(id) ? id : [id];
+    rel = parts.join('/');
+  } else {
+    // attempt to extract path after '/api/web/' from req.url
+    const prefix = '/api/web/';
+    const urlPath = req.url || '';
+    const idx = urlPath.indexOf(prefix);
+    if (idx >= 0) rel = decodeURIComponent(urlPath.slice(idx + prefix.length));
+    else rel = urlPath.replace(/^\//, '');
+  }
 
   if (rel.includes('..')) {
     res.statusCode = 400;
