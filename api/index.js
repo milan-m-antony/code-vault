@@ -50,6 +50,8 @@ module.exports = (req, res) => {
   }
 
   out += '\nNotes:\n- Use -L with curl to follow redirects (Vercel).\n- If the site cannot serve static files, the API will fallback to the GitHub raw file URLs so the code still displays.\n';
+  // runtime timestamp to help force fresh content and debugging
+  out += `Updated: ${new Date().toISOString()}\n`;
   res.statusCode = 200;
   res.end(out);
 };
