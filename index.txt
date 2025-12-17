@@ -1,23 +1,22 @@
+﻿==================================================
+CODE VAULT
+WEB PROGRAM LIST
 ==================================================
-				CODE VAULT
-			WEB PROGRAM LIST
-==================================================
-
 
 --------------------------------------------------
  WEB PROJECTS
 --------------------------------------------------
 
-[1]calculator
-		curl url/web/ 
+[1] calculator
+Location: web/1/
+Files: index.html, script.js, style.css
 
-[2] HTML page to show online exams using Javascript.
-		curl url/web/  
-
+[2] simple HTML page (online exams demo)
+Location: web/2/
+Files: index.html
 
 
 --------------------------------------------------
  END OF LIST
 --------------------------------------------------
-
 
