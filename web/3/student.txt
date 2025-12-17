@@ -1,34 +1,73 @@
 <html>
-
 <head>
     <title>Student Details</title>
+
+    <script>
+        function validateForm() {
+            let name = document.forms["studentForm"]["fullname"].value;
+            let email = document.forms["studentForm"]["email"].value;
+            let number = document.forms["studentForm"]["number"].value;
+            let roll = document.forms["studentForm"]["rollno"].value;
+
+            if (name == "") {
+                alert("Full Name is required");
+                return false;
+            }
+
+            if (email == "") {
+                alert("Email is required");
+                return false;
+            }
+
+            if (!email.includes("@")) {
+                alert("Enter a valid email");
+                return false;
+            }
+
+            if (number == "") {
+                alert("Phone Number is required");
+                return false;
+            }
+
+            if (isNaN(number) || number.length != 10) {
+                alert("Enter a valid 10-digit phone number");
+                return false;
+            }
+
+            if (roll == "") {
+                alert("Roll No is required");
+                return false;
+            }
+
+            alert("Form submitted successfully");
+            return true;
+        }
+    </script>
 </head>
 
 <body style="text-align:center;">
 
     <h2>Student Details Form</h2>
 
-    <form method="post" action="connection.php">
+    <form name="studentForm" method="post" action="connection.php" onsubmit="return validateForm()">
+
         <label>Full Name</label><br>
-        <input type="text" name="fullname" required><br><br>
+        <input type="text" name="fullname"><br><br>
 
         <label>Email</label><br>
-        <input type="email" name="email" required><br><br>
+        <input type="text" name="email"><br><br>
 
         <label>Phone Number</label><br>
-        <input type="text" name="number" required><br><br>
+        <input type="text" name="number"><br><br>
 
         <label>Roll No</label><br>
-        <input type="text" name="rollno" required><br><br>
+        <input type="text" name="rollno"><br><br>
 
         <button type="submit" name="submit">Save</button>
         <button type="reset">Reset</button>
-        <button onclick="location.href='view.php'">View</button>
-
-
+        <button type="button" onclick="location.href='view.php'">View</button>
 
     </form>
 
 </body>
-
 </html>

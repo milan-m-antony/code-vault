@@ -21,6 +21,19 @@ module.exports = (req, res) => {
   const names = { '1': 'Calculator', '2': 'Exam question', '3': 'PHP CRUD (student)', '4': 'Curriculum Vitae (Milan M Antony)' };
 
   let out = 'CODE VAULT - WEB PROJECTS\n\n';
+  // temporary disable toggle: create a file named `.hide_web` in the repo root
+  // to hide the web listing (useful when you want to add/modify projects privately).
+  const hideFile = path.join(process.cwd(), '.hide_web');
+  if (fs.existsSync(hideFile)) {
+    out += 'Web listing is temporarily disabled.\n';
+    out += 'To re-enable the listing, remove the file `.hide_web` from the project root.\n\n';
+    out += 'You can still access individual files directly if you know their URLs.\n';
+    out += `Updated: ${new Date().toISOString()}\n`;
+    res.statusCode = 200;
+    res.end(out);
+    return;
+  }
+
   if (projects.length === 0) {
     out += 'No web projects found.\n';
   } else {
