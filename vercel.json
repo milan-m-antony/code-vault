@@ -13,6 +13,11 @@
       "destination": "https://raw.githubusercontent.com/milan-m-antony/code-vault/main/web/:path*",
       "permanent": false
     }
-    
+    ,
+    {
+      "source": "/python/:path*",
+      "destination": "https://raw.githubusercontent.com/milan-m-antony/code-vault/main/python/:path*",
+      "permanent": false
+    }
   ]
 }
