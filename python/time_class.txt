@@ -1,5 +1,10 @@
 ====================================================================================================
 # Time class with addition and string formatting
+# Sample Input:
+# Enter time 1 (HH:MM:SS): 01:30:15
+# Enter time 2 (HH:MM:SS): 00:45:50
+# Sample Output:
+# Sum of times: 02:16:05
 class Time:
     def __init__(self, hours=0, minutes=0, seconds=0):
         self.hours = hours

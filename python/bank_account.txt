@@ -1,4 +1,14 @@
 ====================================================================================================
+# Sample Input:
+# Enter account number: 12345
+# Enter name: Alice
+# Enter account type: savings
+# Enter initial balance: 1000
+# Enter deposit amount: 250
+# Enter withdraw amount: 100
+# Sample Output:
+# Current balance: 1250.0
+# Current balance: 1150.0
 
 class BankAccount:
     def __init__(self, acc_no, name, acc_type, balance):

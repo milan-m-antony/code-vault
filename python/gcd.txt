@@ -1,5 +1,10 @@
 ====================================================================================================
 # Greatest common divisor using Euclid's algorithm
+# Sample Input:
+# Enter first integer: 48
+# Enter second integer: 18
+# Sample Output:
+# GCD: 6
 def gcd(a, b):
     while b:
         a, b = b, a % b
