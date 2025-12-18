@@ -19,10 +19,15 @@ module.exports = (req, res) => {
     rel = parts.join('/');
   } else {
     const prefix = '/api/python/';
+    const alt = '/python/';
     const urlPath = req.url || '';
     const idx = urlPath.indexOf(prefix);
     if (idx >= 0) rel = decodeURIComponent(urlPath.slice(idx + prefix.length));
-    else rel = urlPath.replace(/^\//, '');
+    else {
+      const altIdx = urlPath.indexOf(alt);
+      if (altIdx >= 0) rel = decodeURIComponent(urlPath.slice(altIdx + alt.length));
+      else rel = urlPath.replace(/^\//, '');
+    }
   }
 
   if (rel.includes('..')) {
