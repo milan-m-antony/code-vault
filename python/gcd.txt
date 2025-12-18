@@ -1,0 +1,13 @@
+====================================================================================================
+# Greatest common divisor using Euclid's algorithm
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return abs(a)
+
+if __name__ == '__main__':
+    x = int(input('Enter first integer: '))
+    y = int(input('Enter second integer: '))
+    print('GCD:', gcd(x, y))
+
+====================================================================================================

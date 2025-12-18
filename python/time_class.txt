@@ -1,0 +1,31 @@
+====================================================================================================
+# Time class with addition and string formatting
+class Time:
+    def _init_(self, hours=0, minutes=0, seconds=0):
+        self.hours = hours
+        self.minutes = minutes
+        self.seconds = seconds
+    def to_seconds(self):
+        return self.hours * 3600 + self.minutes * 60 + self.seconds
+    @classmethod
+    def from_seconds(cls, total_secs):
+        hours = total_secs // 3600
+        minutes = (total_secs % 3600) // 60
+        seconds = total_secs % 60
+        return cls(hours, minutes, seconds)
+    def __add__(self, other):
+        total = self.to_seconds() + other.to_seconds()
+        return Time.from_seconds(total)
+    def __str__(self):
+        return f"{self.hours:02d}:{self.minutes:02d}:{self.seconds:02d}"
+
+def parse_time(prompt):
+    h, m, s = map(int, input(prompt).split(':'))
+    return Time(h, m, s)
+
+t1 = parse_time("Enter time 1 (HH:MM:SS): ")
+t2 = parse_time("Enter time 2 (HH:MM:SS): ")
+sum_time = t1 + t2
+print("Sum of times:", sum_time)
+
+====================================================================================================

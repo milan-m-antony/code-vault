@@ -1,0 +1,20 @@
+====================================================================================================
+# CSV to dict converter: column header to list of values
+import csv
+
+def csv_to_dict(filename):
+    with open(filename, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        result = {}
+        for row in reader:
+            for k, v in row.items():
+                result.setdefault(k, []).append(v)
+    return result
+
+if __name__ == '__main__':
+    fname = input("Enter CSV filename: ")
+    d = csv_to_dict(fname)
+    for k, vals in d.items():
+        print(f"{k}: {vals}")
+
+====================================================================================================
