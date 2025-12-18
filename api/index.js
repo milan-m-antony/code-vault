@@ -19,6 +19,7 @@ module.exports = (req, res) => {
 
   // If a top-level `python/` folder exists, show python programs at root
   try {
+    const pyDirRoot = path.join(process.cwd(), 'python');
     if (fs.existsSync(pyDirRoot)) {
       let pout = 'PYTHON PROJECTS\n\n';
       const entries = fs.readdirSync(pyDirRoot, { withFileTypes: true });
