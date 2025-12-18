@@ -19,6 +19,50 @@ module.exports = (req, res) => {
 
   // If a top-level `python/` folder exists, show python programs at root
   try {
+    // If a top-level `c/` folder exists, show C projects at root
+    const cDirRoot = path.join(process.cwd(), 'c');
+    if (fs.existsSync(cDirRoot)) {
+      let cout = 'C PROJECTS\n\n';
+      const entriesC = fs.readdirSync(cDirRoot, { withFileTypes: true });
+      const filesC = entriesC
+        .filter(d => d.isFile())
+        .map(d => d.name)
+        .filter(n => (n.endsWith('.txt') || n.endsWith('.c')) && n.toLowerCase() !== 'index.txt')
+        .sort();
+      const dirsC = entriesC.filter(d => d.isDirectory()).map(d => d.name).sort();
+
+      filesC.forEach((f, i) => {
+        const name = f.replace(/\.(txt|c)$/i, '');
+        cout += `------------------------------\n`;
+        cout += `${i + 1}. ${name}\n`;
+        cout += `\n`;
+        cout += `View: curl -L https://${host}/c/${f}\n`;
+        cout += `------------------------------\n\n`;
+      });
+
+      if (dirsC.length > 0) {
+        dirsC.forEach((d, i) => {
+          cout += `${filesC.length + i + 1}) ${d}\n  Path: c/${d}/\n`;
+          try {
+            const sub = fs.readdirSync(path.join(cDirRoot, d))
+              .filter(n => (n.endsWith('.c') || n.endsWith('.txt')) && n.toLowerCase() !== 'index.txt')
+              .sort();
+            if (sub.length === 0) cout += '  (no source files)\n';
+            else sub.forEach(f => cout += `  curl -L https://${host}/c/${d}/${f}\n`);
+          } catch (e) {
+            cout += '  (error reading directory)\n';
+          }
+          cout += '\n';
+        });
+      }
+
+      cout += `Updated: ${new Date().toISOString()}\n`;
+      res.statusCode = 200;
+      res.end(cout);
+      return;
+    }
+
+    // If a top-level `python/` folder exists, show python programs at root
     const pyDirRoot = path.join(process.cwd(), 'python');
     if (fs.existsSync(pyDirRoot)) {
       let pout = 'PYTHON PROJECTS\n\n';
@@ -29,44 +73,6 @@ module.exports = (req, res) => {
         .filter(n => n.endsWith('.txt') && n.toLowerCase() !== 'index.txt')
         .sort();
       const dirs = entries.filter(d => d.isDirectory()).map(d => d.name).sort();
-
-      const descriptions = {
-        'bank_account.txt': 'BankAccount class - simple banking operations',
-        'list_compare.txt': 'Compare two integer lists: length, sum, common values'
-      };
-
-      files.forEach((f, i) => {
-        const name = f.replace(/\.txt$/i, '');
-        const desc = descriptions[f] || '';
-        pout += `------------------------------\n`;
-        pout += `${i + 1}. ${name}\n`;
-        if (desc) pout += `${desc}\n`;
-        pout += `\n`;
-        pout += `View: curl -L https://${host}/python/${f}\n`;
-        pout += `------------------------------\n\n`;
-      });
-
-      if (dirs.length > 0) {
-        dirs.forEach((d, i) => {
-          pout += `${files.length + i + 1}) ${d}\n  Path: python/${d}/\n`;
-          try {
-            const sub = fs.readdirSync(path.join(pyDirRoot, d))
-              .filter(n => (n.endsWith('.py') || n.endsWith('.txt')) && n.toLowerCase() !== 'index.txt')
-              .sort();
-            if (sub.length === 0) pout += '  (no source files)\n';
-            else sub.forEach(f => pout += `  curl -L https://${host}/python/${d}/${f}\n`);
-          } catch (e) {
-            pout += '  (error reading directory)\n';
-          }
-          pout += '\n';
-        });
-      }
-
-      pout += `Updated: ${new Date().toISOString()}\n`;
-      res.statusCode = 200;
-      res.end(pout);
-      return;
-    }
   } catch (e) {
     // fall through to web listing if python folder read fails
   }

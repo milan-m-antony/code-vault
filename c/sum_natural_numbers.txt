@@ -1,0 +1,16 @@
+To implement a program to find sum of n natural numbers using while loop.
+
+#include<stdio.h>
+int main()
+{
+int num,i=1,sum=0;
+printf("Enter a number \n");
+scanf("%d", &num);
+while(i<=num)
+{
+sum+=i;
+i++;
+}
+printf("%d", sum);
+return 0;
+}
