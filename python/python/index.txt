@@ -1,9 +1,0 @@
-Python Projects
-
-1) Text processor
-  Path: web/python/text_processor/
-  (add .txt sources here)
-
-2) Example script
-  Path: web/python/example/
-  (add .txt sources here)
