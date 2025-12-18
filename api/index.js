@@ -38,8 +38,12 @@ module.exports = (req, res) => {
       files.forEach((f, i) => {
         const name = f.replace(/\.txt$/i, '');
         const desc = descriptions[f] || '';
-        pout += `${i + 1}) ${name}` + (desc ? ` - ${desc}` : '') + `\n`;
-        pout += `   curl -L https://${host}/python/${f}\n\n`;
+        pout += `------------------------------\n`;
+        pout += `${i + 1}. ${name}\n`;
+        if (desc) pout += `${desc}\n`;
+        pout += `\n`;
+        pout += `View: curl -L https://${host}/python/${f}\n`;
+        pout += `------------------------------\n\n`;
       });
 
       if (dirs.length > 0) {
