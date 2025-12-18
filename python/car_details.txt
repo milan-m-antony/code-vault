@@ -1,0 +1,85 @@
+====================================================================================================
+# Python program to manage car details
+class Car:
+    def __init__(self, brand, model, fuel_level):
+        self.brand = brand
+        self.model = model
+        self.fuel_level = fuel_level
+
+    def display_details(self):
+        print(f"Brand: {self.brand}, Model: {self.model}, Fuel level: {self.fuel_level}")
+
+    def display_fuel_level(self):
+        print(f"{self.brand} {self.model} : Fuel level: {self.fuel_level}")
+
+class CarDetails:
+    def __init__(self):
+        self.cars = []
+
+    def add_car(self, brand, model, fuel_level):
+        new_car = Car(brand, model, fuel_level)
+        self.cars.append(new_car)
+
+    def display_all_cars(self):
+        print("\nCar Details\n")
+        if not self.cars:
+            print("No cars added yet.")
+        for car in self.cars:
+            car.display_details()
+
+    def display_all_fuel_levels(self):
+        print("\nFuel Levels\n")
+        if not self.cars:
+            print("No cars added yet.")
+        for car in self.cars:
+            car.display_fuel_level()
+
+if __name__ == '__main__':
+    car_manager = CarDetails()
+    while True:
+        print("1. Add Car")
+        print("2. Display All Cars")
+        print("3. Display Fuel Levels")
+        print("4. Exit")
+        choice = input("Enter choice (1-4): ")
+
+        if choice == "1":
+            brand = input("Enter car brand: ")
+            model = input("Enter car model: ")
+            fuel_level = int(input("Enter fuel level: "))
+            car_manager.add_car(brand, model, fuel_level)
+            print("Car added")
+
+        elif choice == "2":
+            car_manager.display_all_cars()
+
+        elif choice == "3":
+            car_manager.display_all_fuel_levels()
+
+        elif choice == "4":
+            print("PROGRAM EXITED SUCCESSFULLY")
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
+
+# Sample Input/Output
+# Sample Input:
+# 1
+# Enter car brand: Toyota
+# Enter car model: Camry
+# Enter fuel level: 75
+# 2
+# 3
+# 4
+# Sample Output:
+# Car added
+#
+# Car Details
+# Brand: Toyota, Model: Camry, Fuel level: 75
+#
+# Fuel Levels
+# Toyota Camry : Fuel level: 75
+# PROGRAM EXITED SUCCESSFULLY
+
+====================================================================================================
