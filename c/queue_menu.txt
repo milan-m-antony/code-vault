@@ -1,0 +1,79 @@
+To implement a menu driven program to perform queue operations using array.
+
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 5
+int queue[SIZE];
+int i;
+int front=-1,rear=-1;
+void enqueue(int value)
+{
+if(rear==SIZE-1)
+{
+printf("Queue overflow");
+}
+else
+{
+if(front==-1)
+front=0;
+rear++;
+queue[rear]=value;
+printf("\n` Inserted %d into queue\n",value);
+}
+}
+void dequeue()
+{
+if(front==-1 || front>rear)
+{
+printf("Queue underflow");
+}
+else
+{
+printf("\n Deleted element %d",queue[front]);
+front++;
+}
+}
+void display()
+{
+if(front==-1 || front>rear)
+{
+printf("Queue is empty\n");
+}
+else
+{
+printf("Queue elements are \n");
+for(i=front;i<=rear;i++)
+{
+printf("%d \n",queue[i]);
+}
+printf("\n");
+}
+}
+int main()
+{
+int choice,value;
+while(1)
+{
+printf("\n1. Enqueue\n 2. Dequeue\n 3.Display\n 4. Exit\n Enter your choice\n");
+scanf("%d",&choice);
+switch(choice)
+{
+case 1:
+printf("Enter the value to be inserted");
+scanf("%d",&value);
+enqueue(value);
+break;
+case 2:
+dequeue();
+break;
+case 3:
+display();
+break;
+case 4:
+exit(0);
+default:
+printf("Invalid choice");
+}
+}
+return 0;
+}

@@ -1,0 +1,56 @@
+To implement a program to find maximum and minimum using Divide and Conquer.
+
+#include<stdio.h>
+int a[50];
+void MaxMin(int i,int j,int *Max,int *Min)
+{
+int Max1,Min1,Max2,Min2,Mid;
+if(i==j)
+{
+*Max=*Min=a[i];
+}
+else if(i==j-1)
+{
+if(a[i]<a[j])
+{
+*Max=a[j];
+*Min=a[i];
+}
+else
+{
+*Max=a[i];
+*Min=a[j];
+}
+}
+else
+{
+Mid=(i+j)/2;
+MaxMin(i,Mid,Max,Min);
+Max1=*Max;
+Min1=*Min;
+MaxMin(Mid+1,j,&Max2,&Min2);
+if(Max1>Max2)
+*Max=Max1;
+else
+*Max=Max2;
+if(Min1<Min2)
+*Min=Min1;
+else
+*Min=Min2;
+}
+}
+int main()
+{
+int n,Max,Min;
+printf("Enter number of elements \n");
+scanf("%d",&n);
+printf("Enter %d elements \n",n);
+for(int i=0;i<n;i++)
+{
+scanf("%d",&a[i]);
+}
+MaxMin(0,n-1,&Max,&Min);
+printf("Maximum element=%d\n",Max);
+printf("Minimum element=%d\n",Min);
+return 0;
+}

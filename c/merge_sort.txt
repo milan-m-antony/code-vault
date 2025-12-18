@@ -1,0 +1,73 @@
+To implement a program to perform merge sort using Divide and Conquer.
+
+#include<stdio.h>
+#define MAX 50
+int a[MAX],b[MAX];
+void merge(int low,int mid,int high)
+{
+int h=low;
+int j=mid+1;
+int i=low;
+while(h<=mid&&j<=high)
+{
+if(a[h]<=a[j])
+{
+b[i]=a[h];
+h++;
+}
+else
+{
+b[i]=a[j];
+j++;
+}
+i++;
+}
+if(h>mid)
+{
+for(int k=j;k<=high;k++)
+{
+b[i]=a[k];
+i++;
+}
+}
+else
+{
+for(int k=h;k<=mid;k++)
+{
+b[i]=a[k];
+i++;
+}
+}
+for(int k=low;k<=high;k++)
+{
+a[k]=b[k];
+}
+}
+void mergeSort(int low,int high)
+{
+if(low<high)
+{
+int mid=(low+high)/2;
+mergeSort(low,mid);
+mergeSort(mid+1,high);
+merge(low,mid,high);
+}
+}
+int main()
+{
+int n;
+printf("Enter number of elements \n");
+scanf("%d",&n);
+printf("Enter %d elements \n",n);
+for(int i=0;i<n;i++)
+{
+scanf("%d",&a[i]);
+}
+mergeSort(0,n-1);
+printf("Sorted array is \n");
+for(int i=0;i<n;i++)
+{
+printf("%d ",a[i]);
+}
+return 0;
+}
