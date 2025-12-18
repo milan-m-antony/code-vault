@@ -105,41 +105,54 @@ module.exports = (req, res) => {
 
     out += `Updated: ${new Date().toISOString()}\n`;
     res.statusCode = 200;
-    res.end(out);
-    return;
-  }
+    try {
+      if (fs.existsSync(pyDirRoot)) {
+        let pout = 'PYTHON PROJECTS\n\n';
+        const entries = fs.readdirSync(pyDirRoot, { withFileTypes: true });
+        // only show .txt viewable program files at root
+        const files = entries
+          .filter(d => d.isFile())
+          .map(d => d.name)
+          .filter(n => n.endsWith('.txt') && n.toLowerCase() !== 'index.txt')
+          .sort();
+        const dirs = entries.filter(d => d.isDirectory()).map(d => d.name).sort();
 
-  if (projects.length === 0) {
-    out += 'No web projects found.\n';
-  } else {
-    projects.forEach((p, idx) => {
-      const display = names[p] || `project-${p}`;
-      const projectDir = path.join(webDir, p);
-      
-      // list all .txt files in this project
-      let txtFiles = [];
-      try {
-        const files = fs.readdirSync(projectDir);
-        txtFiles = files.filter(f => f.endsWith('.txt')).sort();
-      } catch (e) {
-        // error reading project dir
+        // simple descriptions for known programs
+        const descriptions = {
+          'bank_account.txt': 'BankAccount class - simple banking operations',
+          'list_compare.txt': 'Compare two integer lists: length, sum, common values'
+        };
+
+        if (files.length > 0) {
+          files.forEach((f, i) => {
+            const name = f.replace(/\.txt$/i, '');
+            const desc = descriptions[f] || '';
+            pout += `${i + 1}) ${name}` + (desc ? ` - ${desc}` : '') + `\n`;
+            pout += `   curl -L https://${host}/python/${f}\n\n`;
+          });
+        }
+
+        if (dirs.length > 0) {
+          dirs.forEach((d, i) => {
+            pout += `${files.length + i + 1}) ${d}\n  Path: python/${d}/\n`;
+            try {
+              const sub = fs.readdirSync(path.join(pyDirRoot, d))
+                .filter(n => (n.endsWith('.py') || n.endsWith('.txt')) && n.toLowerCase() !== 'index.txt')
+                .sort();
+              if (sub.length === 0) pout += '  (no source files)\n';
+              else sub.forEach(f => pout += `  curl -L https://${host}/python/${d}/${f}\n`);
+            } catch (e) {
+              pout += '  (error reading directory)\n';
+            }
+            pout += '\n';
+          });
+        }
+
+        pout += `Updated: ${new Date().toISOString()}\n`;
+        res.statusCode = 200;
+        res.end(pout);
+        return;
       }
-
-      out += `${idx + 1}) ${display}\n  Path: web/${p}/\n`;
-      if (txtFiles.length === 0) {
-        out += '  (no source files)\n';
-      } else {
-        txtFiles.forEach(f => {
-          out += `  curl -L https://${host}/web/${p}/${f}\n`;
-        });
-      }
-      out += '\n';
-    });
-  }
-
-  out += '\nNotes:\n- Use -L with curl to follow redirects (Vercel).\n- If the site cannot serve static files, the API will fallback to the GitHub raw file URLs so the code still displays.\n';
-  // runtime timestamp to help force fresh content and debugging
-  out += `Updated: ${new Date().toISOString()}\n`;
-  res.statusCode = 200;
-  res.end(out);
-};
+    } catch (e) {
+      // fall through to web listing if python folder read fails
+    }
