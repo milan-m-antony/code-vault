@@ -1,18 +1,18 @@
 ====================================================================================================
 # Rectangle class with area/perimeter and comparison
 class Rectangle:
-    def _init_(self, length, breadth):
+    def __init__(self, length, breadth):
         self.length = length
         self.breadth = breadth
     def area(self):
         return self.length * self.breadth
     def perimeter(self):
         return 2 * (self.length + self.breadth)
-    def _gt_(self, other):
+    def __gt__(self, other):
         return self.area() > other.area()
-    def _lt_(self, other):
+    def __lt__(self, other):
         return self.area() < other.area()
-    def _eq_(self, other):
+    def __eq__(self, other):
         return self.area() == other.area()
 length1 = float(input("Enter length of rectangle 1: "))
 breadth1 = float(input("Enter breadth of rectangle 1: "))
