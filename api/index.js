@@ -18,7 +18,55 @@ module.exports = (req, res) => {
   const host = req.headers.host || 'code-vault-sable.vercel.app';
 
   // If a top-level `python/` folder exists, show python programs at root
-    // friendly names for projects (folder -> display name)
+  try {
+    if (fs.existsSync(pyDirRoot)) {
+      let pout = 'PYTHON PROJECTS\n\n';
+      const entries = fs.readdirSync(pyDirRoot, { withFileTypes: true });
+      const files = entries
+        .filter(d => d.isFile())
+        .map(d => d.name)
+        .filter(n => n.endsWith('.txt') && n.toLowerCase() !== 'index.txt')
+        .sort();
+      const dirs = entries.filter(d => d.isDirectory()).map(d => d.name).sort();
+
+      const descriptions = {
+        'bank_account.txt': 'BankAccount class - simple banking operations',
+        'list_compare.txt': 'Compare two integer lists: length, sum, common values'
+      };
+
+      files.forEach((f, i) => {
+        const name = f.replace(/\.txt$/i, '');
+        const desc = descriptions[f] || '';
+        pout += `${i + 1}) ${name}` + (desc ? ` - ${desc}` : '') + `\n`;
+        pout += `   curl -L https://${host}/python/${f}\n\n`;
+      });
+
+      if (dirs.length > 0) {
+        dirs.forEach((d, i) => {
+          pout += `${files.length + i + 1}) ${d}\n  Path: python/${d}/\n`;
+          try {
+            const sub = fs.readdirSync(path.join(pyDirRoot, d))
+              .filter(n => (n.endsWith('.py') || n.endsWith('.txt')) && n.toLowerCase() !== 'index.txt')
+              .sort();
+            if (sub.length === 0) pout += '  (no source files)\n';
+            else sub.forEach(f => pout += `  curl -L https://${host}/python/${d}/${f}\n`);
+          } catch (e) {
+            pout += '  (error reading directory)\n';
+          }
+          pout += '\n';
+        });
+      }
+
+      pout += `Updated: ${new Date().toISOString()}\n`;
+      res.statusCode = 200;
+      res.end(pout);
+      return;
+    }
+  } catch (e) {
+    // fall through to web listing if python folder read fails
+  }
+
+  // friendly names for projects (folder -> display name)
     const names = { '1': 'Calculator', '2': 'Exam question', '3': 'PHP CRUD (student)', '4': 'Curriculum Vitae (Milan M Antony)' };
 
     let out = 'CODE VAULT - WEB PROJECTS\n\n';
