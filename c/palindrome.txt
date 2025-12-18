@@ -1,0 +1,24 @@
+To implement a program to check whether a number is Palindrome or Not.
+
+#include<stdio.h>
+int main()
+{
+int num, i=0, temporary;
+printf("Enter a number \n");
+scanf("%d", &num);
+temporary=num;
+while(temporary>0)
+{
+i=i*10+temporary%10;
+temporary/=10;
+}
+if(i==num)
+{
+printf("Number is palindrome");
+}
+else
+{
+printf("Number is not palindrome");
+}
+return 0;
+}
