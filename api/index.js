@@ -23,7 +23,11 @@ module.exports = (req, res) => {
     if (fs.existsSync(pyDirRoot)) {
       let pout = 'PYTHON PROJECTS\n\n';
       const entries = fs.readdirSync(pyDirRoot, { withFileTypes: true });
-      const files = entries.filter(d => d.isFile()).map(d => d.name).filter(n => n.endsWith('.py') || n.endsWith('.txt')).sort();
+      const files = entries
+        .filter(d => d.isFile())
+        .map(d => d.name)
+        .filter(n => (n.endsWith('.py') || n.endsWith('.txt')) && n.toLowerCase() !== 'index.txt')
+        .sort();
       const dirs = entries.filter(d => d.isDirectory()).map(d => d.name).sort();
 
       if (files.length > 0) {
@@ -36,7 +40,9 @@ module.exports = (req, res) => {
         dirs.forEach((d, i) => {
           pout += `${i + 1}) ${d}\n  Path: python/${d}/\n`;
           try {
-            const sub = fs.readdirSync(path.join(pyDirRoot, d)).filter(n => n.endsWith('.py') || n.endsWith('.txt')).sort();
+            const sub = fs.readdirSync(path.join(pyDirRoot, d))
+              .filter(n => (n.endsWith('.py') || n.endsWith('.txt')) && n.toLowerCase() !== 'index.txt')
+              .sort();
             if (sub.length === 0) pout += '  (no source files)\n';
             else sub.forEach(f => pout += `  curl -L https://${host}/python/${d}/${f}\n`);
           } catch (e) {
