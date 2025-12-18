@@ -1,7 +1,5 @@
+====================================================================================================
 
-=========================
- Bank Account Management
-=========================
 class BankAccount:
     def __init__(self, acc_no, name, acc_type, balance):
         self.acc_no = acc_no
@@ -42,6 +40,5 @@ if __name__ == '__main__':
         print("Current balance:", new_bal)
     except ValueError as e:
         print(e)
-=========================
- End of Bank Account Management
-=========================
+
+====================================================================================================
