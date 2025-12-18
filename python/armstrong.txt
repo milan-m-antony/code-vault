@@ -1,0 +1,21 @@
+====================================================================================================
+# Armstrong number check
+num = int(input("Enter a number: "))
+temp = num
+sum_ = 0
+n = len(str(num))
+while num != 0:
+    digit = num % 10
+    sum_ += digit ** n
+    num //= 10
+if sum_ == temp:
+    print("Armstrong")
+else:
+    print("Not armstrong")
+
+# Sample Input:
+# Enter a number: 153
+# Sample Output:
+# Armstrong
+
+====================================================================================================

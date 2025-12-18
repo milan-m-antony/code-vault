@@ -1,0 +1,23 @@
+====================================================================================================
+# Print prime numbers up to n
+n = int(input("Enter a number: "))
+num = 2
+while num <= n:
+    i = 2
+    flag = False
+    while i <= num // 2:
+        if num % i == 0:
+            flag = True
+            break
+        i += 1
+    if not flag:
+        print(num, end=" ")
+    num += 1
+print()
+
+# Sample Input:
+# Enter a number: 10
+# Sample Output:
+# 2 3 5 7 
+
+====================================================================================================

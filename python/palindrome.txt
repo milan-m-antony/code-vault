@@ -1,0 +1,20 @@
+====================================================================================================
+# Palindrome number check
+num = int(input("Enter a number: "))
+temp = num
+res = 0
+while num != 0:
+    digit = num % 10
+    res = (res * 10) + digit
+    num //= 10
+if temp == res:
+    print("Palindrome")
+else:
+    print("Not palindrome")
+
+# Sample Input:
+# Enter a number: 121
+# Sample Output:
+# Palindrome
+
+====================================================================================================
