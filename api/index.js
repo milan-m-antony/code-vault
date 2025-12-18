@@ -25,9 +25,40 @@ module.exports = (req, res) => {
   // to hide the web listing (useful when you want to add/modify projects privately).
   const hideFile = path.join(process.cwd(), '.hide_web');
   if (fs.existsSync(hideFile)) {
-    out += 'Web listing is temporarily disabled.\n';
-    out += 'To re-enable the listing, remove the file `.hide_web` from the project root.\n\n';
-    out += 'You can still access individual files directly if you know their URLs.\n';
+    // When .hide_web exists, show python projects/files instead of the disabled message
+    out = 'PYTHON PROJECTS\n\n';
+    const pyDir = path.join(process.cwd(), 'python');
+    try {
+      const entries = fs.readdirSync(pyDir, { withFileTypes: true });
+      const dirs = entries.filter(d => d.isDirectory()).map(d => d.name).sort();
+      const files = entries.filter(d => d.isFile()).map(d => d.name).filter(n => n.endsWith('.py') || n.endsWith('.txt')).sort();
+
+      if (files.length > 0) {
+        out += 'Files in python/:\n';
+        files.forEach(f => {
+          out += `  curl -L https://${req.headers.host || 'code-vault-sable.vercel.app'}/python/${f}\n`;
+        });
+        out += '\n';
+      }
+
+      if (dirs.length > 0) {
+        dirs.forEach((d, i) => {
+          out += `${i + 1}) ${d}\n  Path: python/${d}/\n`;
+          // list txt/py files inside each subdir
+          try {
+            const sub = fs.readdirSync(path.join(pyDir, d)).filter(n => n.endsWith('.py') || n.endsWith('.txt')).sort();
+            if (sub.length === 0) out += '  (no source files)\n';
+            else sub.forEach(f => out += `  curl -L https://${req.headers.host || 'code-vault-sable.vercel.app'}/python/${d}/${f}\n`);
+          } catch (e) {
+            out += '  (error reading directory)\n';
+          }
+          out += '\n';
+        });
+      }
+    } catch (e) {
+      out += 'No python folder found.\n';
+    }
+
     out += `Updated: ${new Date().toISOString()}\n`;
     res.statusCode = 200;
     res.end(out);
