@@ -1,0 +1,40 @@
+class BankAccount:
+    def __init__(self, acc_no, name, acc_type, balance):
+        self.acc_no = acc_no
+        self.name = name
+        self.acc_type = acc_type
+        self.balance = balance
+
+    def deposit(self, amount):
+        if amount <= 0:
+            raise ValueError('Deposit amount must be positive')
+        self.balance += amount
+        return self.balance
+
+    def withdraw(self, amount):
+        if amount <= 0:
+            raise ValueError('Withdraw amount must be positive')
+        if amount <= self.balance:
+            self.balance -= amount
+            return self.balance
+        else:
+            raise ValueError('Insufficient balance')
+
+    def __str__(self):
+        return f"BankAccount(acc_no={self.acc_no}, name={self.name}, acc_type={self.acc_type}, balance={self.balance})"
+
+
+if __name__ == '__main__':
+    acc_no = input("Enter account number: ")
+    name = input("Enter name: ")
+    acc_type = input("Enter account type: ")
+    balance = float(input("Enter initial balance: "))
+
+    account = BankAccount(acc_no, name, acc_type, balance)
+    try:
+        new_bal = account.deposit(float(input("Enter deposit amount: ")))
+        print("Current balance:", new_bal)
+        new_bal = account.withdraw(float(input("Enter withdraw amount: ")))
+        print("Current balance:", new_bal)
+    except ValueError as e:
+        print(e)
