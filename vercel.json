@@ -6,6 +6,7 @@
   "rewrites": [
     { "source": "/", "destination": "/api" },
     { "source": "/python/:path*", "destination": "/api/python/:path*" }
+    ,{ "source": "/c/:path*", "destination": "/api/c/:path*" }
   ],
   "redirects": [
     {
@@ -17,6 +18,12 @@
     {
       "source": "/python/:path*",
       "destination": "https://raw.githubusercontent.com/milan-m-antony/code-vault/main/python/:path*",
+      "permanent": false
+    }
+    ,
+    {
+      "source": "/c/:path*",
+      "destination": "https://raw.githubusercontent.com/milan-m-antony/code-vault/main/c/:path*",
       "permanent": false
     }
   ]
