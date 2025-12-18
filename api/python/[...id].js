@@ -54,9 +54,10 @@ module.exports = (req, res) => {
       }
     }
 
+    // If exact path exists, serve it
     if (fs.existsSync(full) && fs.statSync(full).isFile()) {
       const ext = path.extname(full).toLowerCase();
-      // serving local file
+      res.setHeader('x-served-by', 'python-api-local');
       res.statusCode = 200;
       res.setHeader('Content-Type', contentTypeFor(ext));
       const stream = fs.createReadStream(full);
@@ -66,6 +67,26 @@ module.exports = (req, res) => {
         res.end('Server error');
       });
       return;
+    }
+
+    // Try case-insensitive filename match in base directory (helps if deployed FS is case-sensitive)
+    try {
+      const candidate = fs.readdirSync(base).find(f => f.toLowerCase() === rel.toLowerCase());
+      if (candidate) {
+        const matchedFull = path.join(base, candidate);
+        if (fs.existsSync(matchedFull) && fs.statSync(matchedFull).isFile()) {
+          const ext2 = path.extname(matchedFull).toLowerCase();
+          res.setHeader('x-served-by', 'python-api-case-insensitive-match');
+          res.statusCode = 200;
+          res.setHeader('Content-Type', contentTypeFor(ext2));
+          const stream2 = fs.createReadStream(matchedFull);
+          stream2.pipe(res);
+          stream2.on('error', () => { res.statusCode = 500; res.end('Server error'); });
+          return;
+        }
+      }
+    } catch (e) {
+      // ignore
     }
 
     // Fallback to GitHub raw
